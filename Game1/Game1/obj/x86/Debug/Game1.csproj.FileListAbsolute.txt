@@ -1,0 +1,12 @@
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\OpenTK.dll.config
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Game1.exe
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Game1.pdb
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\MonoGame.Framework.dll
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\NVorbis.dll
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\OpenTK.dll
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\obj\x86\Debug\Game1.exe
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\obj\x86\Debug\Game1.pdb
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Content\Graphics\player.xnb
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Content\Graphics\PlayerPaper.xnb
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\obj\x86\Debug\Game1.csprojResolveAssemblyReference.cache
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Content\basicFont.xnb

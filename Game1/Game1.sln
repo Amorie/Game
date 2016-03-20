@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game1", "Game1\Game1.csproj", "{AD1706CD-7835-49D2-A9A6-9A3EF7D416B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{472A2002-2548-4C08-A7F7-C1FF3495A3C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD1706CD-7835-49D2-A9A6-9A3EF7D416B9}.Debug|x86.ActiveCfg = Debug|x86
+		{AD1706CD-7835-49D2-A9A6-9A3EF7D416B9}.Debug|x86.Build.0 = Debug|x86
+		{AD1706CD-7835-49D2-A9A6-9A3EF7D416B9}.Release|x86.ActiveCfg = Release|x86
+		{AD1706CD-7835-49D2-A9A6-9A3EF7D416B9}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
