@@ -14,8 +14,8 @@ namespace Game1
         private Color _rectangleColor;
         private Texture2D _rectangleTexture;
 
-        public DebugSprite(Vector2 position, Color rectangleColor, float speed = 0, float angle = 0 ) :
-        base(position, speed, angle)
+        public DebugSprite(Vector2 position, Color rectangleColor, float speed = 0, float angle = 0 , Rectangle? bounds = null) :
+        base(position, speed, angle, bounds)
         {
             _rectangleColor = rectangleColor;
         }

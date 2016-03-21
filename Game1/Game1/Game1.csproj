@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
+    <Content Include="Content\Graphics\arrow.png" />
+    <Content Include="Content\Graphics\ball.png" />
     <Content Include="Content\Graphics\PlayerPaper.png" />
     <Content Include="OpenTK.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

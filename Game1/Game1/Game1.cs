@@ -10,23 +10,25 @@ namespace Game1
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        SpriteFont spriteFont;
-        private KeyboardState keyState;
-       
-        private Vector2 position, velocity;
-        private Texture2D spaceship;
-        private float speed = 120;
-        Player player;
+        private GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        private DebugSprite _ball1, _ball2;
+        private Color _clearColor, _collisionColor;
+
+        private readonly Rectangle _gameDimensions;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            _graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = 1280,
+                PreferredBackBufferHeight = 720
+            };
+            
 
             Content.RootDirectory = "Content";
+
+            _gameDimensions = new Rectangle(0,0, 1280,720);
         }
 
         /// <summary>
@@ -38,10 +40,11 @@ namespace Game1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player = new Player();
-            keyState = Keyboard.GetState();
-            velocity = Vector2.Zero;
-            position = new Vector2(100, 200);
+           
+            _ball1 = new DebugSprite(new Vector2(0, (_graphics.GraphicsDevice.Viewport.Height /2.0f) - 120), Color.White, 70, 0,_gameDimensions );
+            _ball2 = new DebugSprite(new Vector2(_graphics.GraphicsDevice.Viewport.Width, (_graphics.GraphicsDevice.Viewport.Height / 2.0f) + 120),Color.White, 60, MathHelper.Pi, _gameDimensions );
+            _clearColor = Color.CornflowerBlue;
+            _collisionColor = Color.Red;
 
             base.Initialize();
         }
@@ -53,14 +56,16 @@ namespace Game1
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y +
-                GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
-            //player.Initialize(Content.Load<Texture2D>("Graphics\\PlayerPaper"), playerPosition);
-            spaceship = Content.Load<Texture2D>("Graphics\\PlayerPaper");
-            spriteFont = Content.Load<SpriteFont>("basicFont");
+            
+            _ball1.LoadContent(Content, GraphicsDevice, "Graphics\\arrow");
+            _ball2.LoadContent(Content, GraphicsDevice, "Graphics\\arrow");
+
+            
+            
         }
 
         /// <summary>
@@ -70,8 +75,8 @@ namespace Game1
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            spaceship.Dispose();
-            spriteFont = null;
+           
+            
         }
 
         /// <summary>
@@ -81,51 +86,16 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            keyState = Keyboard.GetState();
+            
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
+            _ball1.Update((gameTime));
+            _ball2.Update(gameTime);
 
-            //positionX = cos(angle in radians) * speed
-            //positionY = sin(angle in radians) * speed
-
-            float? angle = null;
-            if (keyState.IsKeyDown(Keys.Up))
-            {
-                angle = 3.0f * MathHelper.PiOver2;
-            }
-            if(keyState.IsKeyDown(Keys.Down))
-            {
-                angle = MathHelper.PiOver2;
-            }
-            if(keyState.IsKeyDown(Keys.Left))
-            {
-                angle = MathHelper.Pi;
-            }
-            if(keyState.IsKeyDown(Keys.Right))
-            {
-                angle = 0;
-            }
-            if(angle.HasValue)
-            {
-                velocity = new Vector2((float)Math.Cos(angle.Value) * speed, (float)Math.Sin(angle.Value) * speed);
-            }
-            else
-            {
-                velocity = Vector2.Zero;
-            }
-            //pixels = px
-            //seconds = s(or any time)
-            //position = px
-            //velocity = px/s 
-            //accelleration = px/s^2
-            //v * s = px
-            //a * s = v
-
-            //position = position + velocity * time
-            position = Vector2.Add(position, Vector2.Multiply(velocity, (float)gameTime.ElapsedGameTime.TotalSeconds));
+            _ball1.Collision(_ball2);
             
             base.Update(gameTime);
         }
@@ -136,13 +106,22 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            if (_ball1.Collided || _ball2.Collided)
+            {
+                GraphicsDevice.Clear(_collisionColor);
+            }
+            else
+            {
+                GraphicsDevice.Clear(_clearColor);
+            }
+            
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            spriteBatch.Draw(spaceship, position, Color.Yellow);
-            spriteBatch.DrawString(spriteFont, "Hello World", Vector2.Zero, Color.Black);
-            spriteBatch.End();
+            _spriteBatch.Begin();
+            _ball1.Draw(_spriteBatch, gameTime);
+            _ball2.Draw(_spriteBatch, gameTime);
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }
