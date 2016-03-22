@@ -12,7 +12,7 @@ namespace Game1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private DebugSprite _ball1, _ball2;
+        private DebugSprite _ball, _paddle;
         private Color _clearColor, _collisionColor;
 
         private readonly Rectangle _gameDimensions;
@@ -41,8 +41,9 @@ namespace Game1
         {
             // TODO: Add your initialization logic here
            
-            _ball1 = new DebugSprite(new Vector2(0, (_graphics.GraphicsDevice.Viewport.Height /2.0f) - 120), Color.White, 70, 0,_gameDimensions );
-            _ball2 = new DebugSprite(new Vector2(_graphics.GraphicsDevice.Viewport.Width, (_graphics.GraphicsDevice.Viewport.Height / 2.0f) + 120),Color.White, 60, MathHelper.Pi, _gameDimensions );
+            _ball = new DebugSprite(new Vector2(0, (_graphics.GraphicsDevice.Viewport.Height / 2.0f) - 160), Color.White, 100, MathHelper.ToRadians(10), MathHelper.TwoPi, 1, _gameDimensions );
+            _paddle = new DebugSprite(new Vector2(_graphics.GraphicsDevice.Viewport.Width - 150, _graphics.GraphicsDevice.Viewport.Height / 2.0f),Color.White );
+           
             _clearColor = Color.CornflowerBlue;
             _collisionColor = Color.Red;
 
@@ -61,8 +62,8 @@ namespace Game1
 
             // TODO: use this.Content to load your game content here
             
-            _ball1.LoadContent(Content, GraphicsDevice, "Graphics\\arrow");
-            _ball2.LoadContent(Content, GraphicsDevice, "Graphics\\arrow");
+            _ball.LoadContent(Content, GraphicsDevice, "Graphics\\ball");
+            _paddle.LoadContent(Content, GraphicsDevice, "Graphics\\paddle");
 
             
             
@@ -75,7 +76,8 @@ namespace Game1
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-           
+           _ball.Unload();
+           _paddle.Unload();
             
         }
 
@@ -92,10 +94,10 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
-            _ball1.Update((gameTime));
-            _ball2.Update(gameTime);
+            _ball.Update((gameTime));
+            
 
-            _ball1.Collision(_ball2);
+            _ball.Collision(_paddle);
             
             base.Update(gameTime);
         }
@@ -107,7 +109,7 @@ namespace Game1
         protected override void Draw(GameTime gameTime)
         {
 
-            if (_ball1.Collided || _ball2.Collided)
+            if (_ball.Collided)
             {
                 GraphicsDevice.Clear(_collisionColor);
             }
@@ -119,8 +121,8 @@ namespace Game1
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            _ball1.Draw(_spriteBatch, gameTime);
-            _ball2.Draw(_spriteBatch, gameTime);
+            _ball.Draw(_spriteBatch, gameTime);
+            _paddle.Draw(_spriteBatch, gameTime);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

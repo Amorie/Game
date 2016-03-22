@@ -12,3 +12,4 @@ C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\obj\x86\Debug\Game1.csprojReso
 C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Content\basicFont.xnb
 C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Content\Graphics\ball.xnb
 C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Content\Graphics\arrow.xnb
+C:\Users\Amorie\Documents\GitHub\Game\Game1\Game1\bin\DesktopGL\x86\Debug\Content\Graphics\paddle.xnb

@@ -13,10 +13,13 @@ namespace Game1
     {
         private Color _rectangleColor;
         private Texture2D _rectangleTexture;
+        private Color _originalColor;
 
-        public DebugSprite(Vector2 position, Color rectangleColor, float speed = 0, float angle = 0 , Rectangle? bounds = null) :
-        base(position, speed, angle, bounds)
+        public DebugSprite(Vector2 position, Color rectangleColor, float speed = 0, float angle = 0 , float roationSpeed = 0, 
+            float scale = 1.0f, Rectangle? bounds = null) :
+        base(position, speed, angle, roationSpeed, scale, bounds)
         {
+            _originalColor = Color.Black * 0.1f;
             _rectangleColor = rectangleColor;
         }
 
@@ -36,6 +39,10 @@ namespace Game1
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);
+
+            // sprite with out any rotation or scaling 
+            spriteBatch.Draw(Texture, Position, null, null, Vector2.Zero, 0, null, _originalColor);
+
             base.Draw(spriteBatch, gameTime);
         }
 
