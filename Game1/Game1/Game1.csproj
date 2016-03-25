@@ -46,6 +46,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite.cs" />
+    <Compile Include="SpriteSheet.cs" />
+    <Compile Include="Texture2DEx.cs" />
     <Compile Include="Vector2Ex.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +69,7 @@
     <Content Include="Content\Graphics\ball.png" />
     <Content Include="Content\Graphics\paddle.png" />
     <Content Include="Content\Graphics\PlayerPaper.png" />
+    <Content Include="Content\Graphics\PlayerPaperAnimated.png" />
     <Content Include="OpenTK.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

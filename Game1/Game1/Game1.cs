@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,8 @@ namespace Game1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private SpriteSheet _spriteSheet;
         private DebugSprite _ball, _paddle;
         private Color _clearColor, _collisionColor;
 
@@ -43,7 +46,8 @@ namespace Game1
            
             _ball = new DebugSprite(new Vector2(0, (_graphics.GraphicsDevice.Viewport.Height / 2.0f) - 160), Color.White, 100, MathHelper.ToRadians(10), MathHelper.TwoPi, 1, _gameDimensions );
             _paddle = new DebugSprite(new Vector2(_graphics.GraphicsDevice.Viewport.Width - 150, _graphics.GraphicsDevice.Viewport.Height / 2.0f),Color.White );
-           
+            _spriteSheet = new SpriteSheet("Graphics\\PlayerPaperAnimated", 58, 86, 6 ,11, true);
+
             _clearColor = Color.CornflowerBlue;
             _collisionColor = Color.Red;
 
@@ -61,7 +65,7 @@ namespace Game1
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            
+            _spriteSheet.LoadContent(Content, GraphicsDevice);
             _ball.LoadContent(Content, GraphicsDevice, "Graphics\\ball");
             _paddle.LoadContent(Content, GraphicsDevice, "Graphics\\paddle");
 
@@ -95,7 +99,11 @@ namespace Game1
 
             // TODO: Add your update logic here
             _ball.Update((gameTime));
-            
+
+            if (gameTime.TotalGameTime.TotalSeconds > 5)
+            {
+                _spriteSheet.Update(gameTime);
+            }
 
             _ball.Collision(_paddle);
             
@@ -122,6 +130,7 @@ namespace Game1
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             _ball.Draw(_spriteBatch, gameTime);
+            _spriteBatch.Draw(_spriteSheet.CurrentFrame, Vector2.Zero, Color.White);
             _paddle.Draw(_spriteBatch, gameTime);
             _spriteBatch.End();
             base.Draw(gameTime);

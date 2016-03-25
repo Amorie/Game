@@ -1,0 +1,6 @@
+c:\users\amorie\documents\visual studio 2015\Projects\GameStateTest\GameStateTest\bin\Debug\GameStateTest.exe.config
+c:\users\amorie\documents\visual studio 2015\Projects\GameStateTest\GameStateTest\bin\Debug\GameStateTest.exe
+c:\users\amorie\documents\visual studio 2015\Projects\GameStateTest\GameStateTest\bin\Debug\GameStateTest.pdb
+c:\users\amorie\documents\visual studio 2015\Projects\GameStateTest\GameStateTest\obj\Debug\GameStateTest.csprojResolveAssemblyReference.cache
+c:\users\amorie\documents\visual studio 2015\Projects\GameStateTest\GameStateTest\obj\Debug\GameStateTest.exe
+c:\users\amorie\documents\visual studio 2015\Projects\GameStateTest\GameStateTest\obj\Debug\GameStateTest.pdb

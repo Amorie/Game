@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Amorie/Documents/GitHub/Game/Game1/Game1/Content/Graphics/ball.png</SourceFile>
-  <SourceTime>2016-03-21T21:58:06.6437593-04:00</SourceTime>
-  <DestFile>C:/Users/Amorie/Documents/GitHub/Game/Game1/Game1/Content/bin/DesktopGL/Graphics/ball.xnb</DestFile>
-  <DestTime>2016-03-22T17:53:36.7188705-04:00</DestTime>
+  <SourceFile>C:/Users/Amorie/Documents/GitHub/Game/Game1/Game1/Content/Graphics/PlayerPaperAnimated.png</SourceFile>
+  <SourceTime>2016-03-22T17:53:01.0250295-04:00</SourceTime>
+  <DestFile>C:/Users/Amorie/Documents/GitHub/Game/Game1/Game1/Content/bin/DesktopGL/Graphics/PlayerPaperAnimated.xnb</DestFile>
+  <DestTime>2016-03-22T17:53:36.7454685-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-15T22:18:04-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
