@@ -38,6 +38,11 @@ namespace Game1
         private Vector2 _scale;
         private Matrix _transform;
         private float _scaleValue;
+        private float _speed;
+        private Vector2 _targetPosition;
+        
+        private bool _order;
+        
         
 
         public Sprite(Vector2 position, float speed = 0, float angle = 0, float rotationSpeed = 0, float scale = 1.0f, Rectangle? bounds = null)
@@ -45,9 +50,10 @@ namespace Game1
             _position = position;
             _rotationSpeed = rotationSpeed;
             _angle = angle;
+            _speed = speed;
             _scale = new Vector2(scale, scale);
             _scaleValue = scale;
-            _velocity = new Vector2((float) (speed*Math.Cos(angle)), (float) (speed*Math.Sin(angle)));
+            _velocity = new Vector2((float) (speed * Math.Cos(angle)), (float) (speed * Math.Sin(angle)));
 
             _texture = null;
             _color = Color.White;
@@ -60,7 +66,11 @@ namespace Game1
 
         public Vector2 Position => _position;
 
-        public Vector2 Velocity => _velocity;
+        public Vector2 Velocity
+        {
+            get { return _velocity; }
+            set { _velocity = value; }
+        }
 
         public Rectangle Rectangle => _rectangle;
 
@@ -76,6 +86,15 @@ namespace Game1
 
         }
 
+        public virtual void Move(Point mousePoint)
+        {
+            _order = true;
+            _targetPosition = new Vector2(mousePoint.X, mousePoint.Y);
+            _velocity =  _targetPosition - _position;
+            
+            
+        }
+        
         protected virtual void OnContentLoaded(ContentManager content, GraphicsDevice graphicsDevice)
         {
             _orgin = new Vector2(_texture.Width / 2.0f, _texture.Height / 2.0f);
@@ -152,8 +171,28 @@ namespace Game1
 
         public void Update(GameTime gameTime)
         {
-            _position += _velocity*(float) gameTime.ElapsedGameTime.TotalSeconds;
+            if (_order)
+            {
+                _velocity = _targetPosition - _position;
+                if (_velocity.Length() < ((float)gameTime.ElapsedGameTime.TotalSeconds * _speed))
+                {
+                    _position = _targetPosition;
+                    _order = false;
+                    _targetPosition = Vector2.Zero;
+                }
+                else
+                {
+                    
+                    
+                        _velocity.Normalize();
 
+                        _position += _velocity * (float) gameTime.ElapsedGameTime.TotalSeconds * _speed;
+                    
+                    
+                    
+                }
+            }
+            
             UpdateRotation(gameTime);
             UpdateTransformMatrix();
             UpdateRectangle();

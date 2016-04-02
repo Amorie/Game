@@ -41,10 +41,14 @@
     <Compile Include="CollisionClass.cs" />
     <Compile Include="DebugSprite.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="IClickable.cs" />
+    <Compile Include="IGameState.cs" />
+    <Compile Include="IGameStateManager.cs" />
     <Compile Include="MathEx.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderingGameStateManager.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="SpriteSheet.cs" />
     <Compile Include="Texture2DEx.cs" />

@@ -11,12 +11,14 @@ namespace Game1
     /// </summary>
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        private MouseState _mouseState;
+        private KeyboardState _keyboardState;
         private SpriteSheet _spriteSheet;
         private DebugSprite _ball, _paddle;
         private Color _clearColor, _collisionColor;
+        
 
         private readonly Rectangle _gameDimensions;
 
@@ -43,8 +45,12 @@ namespace Game1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-           
-            _ball = new DebugSprite(new Vector2(0, (_graphics.GraphicsDevice.Viewport.Height / 2.0f) - 160), Color.White, 100, MathHelper.ToRadians(10), MathHelper.TwoPi, 1, _gameDimensions );
+            
+            this.IsMouseVisible = true;
+            _mouseState = new MouseState();
+            _keyboardState = new KeyboardState();
+            //_ball = new DebugSprite(new Vector2(0, (_graphics.GraphicsDevice.Viewport.Height / 2.0f) - 160), Color.White, 100, MathHelper.ToRadians(10), MathHelper.TwoPi, 1, _gameDimensions );
+            _ball = new DebugSprite(new Vector2(_graphics.GraphicsDevice.Viewport.Height - 150, 160), Color.White, 100,0, 2);
             _paddle = new DebugSprite(new Vector2(_graphics.GraphicsDevice.Viewport.Width - 150, _graphics.GraphicsDevice.Viewport.Height / 2.0f),Color.White );
             _spriteSheet = new SpriteSheet("Graphics\\PlayerPaperAnimated", 58, 86, 6 ,11, true);
 
@@ -106,7 +112,17 @@ namespace Game1
             }
 
             _ball.Collision(_paddle);
-            
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+               
+            }
+            _mouseState = Mouse.GetState();
+            if (_mouseState.RightButton == ButtonState.Pressed)
+            {
+                _ball.Move(_mouseState.Position);
+                
+            }
+
             base.Update(gameTime);
         }
 
@@ -130,7 +146,7 @@ namespace Game1
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             _ball.Draw(_spriteBatch, gameTime);
-            _spriteBatch.Draw(_spriteSheet.CurrentFrame, Vector2.Zero, Color.White);
+            
             _paddle.Draw(_spriteBatch, gameTime);
             _spriteBatch.End();
             base.Draw(gameTime);

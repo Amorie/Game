@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shooter
 {
-    class Player
+    class Player : IDrawable, IUpdateable
     {
         
         public Texture2D PlayerTexture { get; set; }
@@ -36,5 +36,23 @@ namespace Shooter
             spritebatch.Draw(PlayerTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
+        public void Draw(GameTime gameTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DrawOrder { get; }
+        public bool Visible { get; }
+        public event EventHandler<EventArgs> DrawOrderChanged;
+        public event EventHandler<EventArgs> VisibleChanged;
+        public void Update(GameTime gameTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Enabled { get; }
+        public int UpdateOrder { get; }
+        public event EventHandler<EventArgs> EnabledChanged;
+        public event EventHandler<EventArgs> UpdateOrderChanged;
     }
 }
